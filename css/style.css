@@ -69,9 +69,6 @@ ul li.checked::before {
   text-align: center;
 }
 
-img {
-  background-color: white;
-}
 
 .header:after {
   content: "";
