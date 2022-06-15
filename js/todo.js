@@ -1,73 +1,52 @@
-let buttonDOM = document.querySelector('#liveToastBtn');
-let listDOM = document.querySelector('#list');
-let taskDOM = document.querySelector('#task');
+let buttonDOM = document.querySelector('#liveToastBtn')
+let listDOM = document.querySelector('#list')
+let taskDOM = document.querySelector('#task')
+let ullength = document.querySelector("li");
+
+// X button to delete the list items
+for (let i = 0; i < ullength.length; i++) {
+    let closeButton = document.createElement("span");
+    closeButton.textContent = "\u00D7";
+    closeButton.classList.add("close");
+    closeButton.onclick = removeButton;
+    ullength[i].append(closeButton);
+    ullength[i].onclick = check;
+}
 
 
-buttonDOM.addEventListener('click', newElement);
-document.addEventListener("DomContentLoaded", displayLocalStorage());
+buttonDOM.addEventListener('click', newElement)
+
+function check() {
+    this.classList.toggle("checked");
+}
+
+function removeButton() {
+    this.parentElement.remove();
+}
+
+// adding new element
 
 function newElement() {
-    if (taskDOM.value) {
-        createList(taskDOM.value);
-        setLocalStorage(taskDOM.value);
-        taskDOM.value = "";
+    if (taskDOM.value = "") {
+        $(".error").toast("show")
     } else {
-        console.log("HATA YABDIN");
-    }
-}
+        $(".success").toast("show");
 
-function createList(todo) {
-    const liDOM = document.createElement("li");
-    liDOM.innerHTML = todo;
-    listDOM.appendChild(liDOM);
 
-    const closeBtn = document.createElement("span");
-    closeBtn.classList.add("close");
-    closeBtn.textContent = "\u00D7";
-    liDOM.append(closeBtn);
-    
-    closeBtn.onclick = removeList;
-    liDOM.onclick = finishToDo;
-}
+        let liDOM = document.createElement("li");
+        listDOM.appendChild(liDOM);
+        liDOM.innerHTML = task.value;
+        taskDOM.value = "";
 
-function removeList(){
-    this.parentElement.remove()
-    deleteLocalStorage(this.previousSibling.textContent)
-}
+        liDOM.onclick = check;
 
-function finishToDo(){
-    this.classList.toggle("checked")
-}
+        let closeButton = document.createElement("span");
+        closeButton.textContent = "\u00D7";
+        closeButton.classList.add("close");
+        closeButton.onclick = removeButton;
 
-function getLocalStorage(){
-    let todo;
-    if(localStorage.getItem("todos") === null){
-        todo = [];
-    }else{
-        todo = JSON.parse(localStorage.getItem("todos"))
-    }
-    return todo;
-}
-
-function displayLocalStorage(){
-    const todos = getLocalStorage()
-    todos.forEach(todo => {
-        createList(todo)
-    });
-}
-
-function setLocalStorage(todo){
-    let todos = getLocalStorage()
-    todos.push(todo)
-    localStorage.setItem("todos", JSON.stringify(todos))
-}
-
-function deleteLocalStorage(text){
-    let todos = getLocalStorage()
-    todos.forEach((todo, index) => {
-        if(todo === text){
-            todos.splice(index, 1)
+        liDOM.append(closeButton);
+        listDOM.append(liDOM);
+        inputElement.value = ("");
         }
-    })
-    localStorage.setItem("todos", JSON.stringify(todos))
 }
