@@ -3,6 +3,8 @@ let listDOM = document.querySelector('#list')
 let taskDOM = document.querySelector('#task')
 let ullength = document.querySelector("li");
 
+window.onload = loadTasks;
+
 // X button to delete the list items
 for (let i = 0; i < ullength.length; i++) {
     let closeButton = document.createElement("span");
@@ -27,7 +29,7 @@ function removeButton() {
 // adding new element
 
 function newElement() {
-    if (taskDOM.value = "") {
+    if (taskDOM.value.trim().length === 0) {
         $(".error").toast("show")
     } else {
         $(".success").toast("show");
@@ -35,7 +37,7 @@ function newElement() {
 
         let liDOM = document.createElement("li");
         listDOM.appendChild(liDOM);
-        liDOM.innerHTML = task.value;
+        liDOM.innerHTML = taskDOM.value;
         taskDOM.value = "";
 
         liDOM.onclick = check;
@@ -50,3 +52,5 @@ function newElement() {
         inputElement.value = ("");
         }
 }
+
+// Saving List on Local Storage
