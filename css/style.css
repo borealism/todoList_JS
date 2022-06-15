@@ -47,10 +47,13 @@ ul li.checked::before {
   transform: rotate(45deg);
   height: 15px;
   width: 7px;
+  margin-top: 6px;
 }
 
 .close {
   position: absolute;
+  display: inline-block;
+  height: 51px;
   right: 0;
   top: 0;
   padding: 12px 16px 12px 16px;
