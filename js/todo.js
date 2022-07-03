@@ -3,7 +3,6 @@ let listDOM = document.querySelector('#list')
 let taskDOM = document.querySelector('#task')
 let ullength = document.querySelector("li");
 
-window.onload = loadTasks;
 
 // X button to delete the list items
 for (let i = 0; i < ullength.length; i++) {
@@ -54,3 +53,4 @@ function newElement() {
 }
 
 // Saving List on Local Storage
+
