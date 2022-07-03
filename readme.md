@@ -1,3 +1,3 @@
 ### To do list Assignment
 
-!(./Screenshot.png)
+!(/Screenshot.png)
